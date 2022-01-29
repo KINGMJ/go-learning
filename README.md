@@ -5,3 +5,6 @@
 - demo3: 变量声明
 - demo4: 常量声明
 - demo5: String 类型操作
+- demo6: Pointers
+- demo7: Array
+- demo8: Slice
