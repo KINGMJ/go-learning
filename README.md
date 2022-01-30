@@ -8,3 +8,4 @@
 - demo6: Pointers
 - demo7: Array
 - demo8: Slice
+- demo9: Map
