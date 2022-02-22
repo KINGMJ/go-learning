@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	copyMapDemo()
+	sliceAsMapValueDemo()
 }
 
 func mapDemo() {
@@ -49,4 +49,43 @@ func copyMapDemo() {
 
 	fmt.Println(dst)  // map[one:1 three:3 two:2]
 	fmt.Println(dst1) // map[one:1 two:2]
+}
+
+/*
+	map 作为 slice 的元素
+*/
+func mapAsSliceItemDemo() {
+	var mapSlice = make([]map[string]string, 3)
+	for index, value := range mapSlice {
+		// index: 0 value: map[]
+		fmt.Printf("index: %d value: %v\n", index, value)
+	}
+	fmt.Println("after init")
+	// 对切片中的 map 元素进行初始化
+	mapSlice[0] = make(map[string]string, 10)
+	mapSlice[0]["name"] = "王五"
+	mapSlice[0]["password"] = "123456"
+	mapSlice[0]["address"] = "红旗大街"
+	for index, value := range mapSlice {
+		// index: 0 value: map[address:红旗大街 name:王五 password:123456]
+		fmt.Printf("index: %d value: %v\n", index, value)
+	}
+}
+
+/*
+	slice 作为 map 的值
+*/
+func sliceAsMapValueDemo() {
+	// map 的 value 是一个 []string slice
+	var sliceMap = make(map[string][]string, 3)
+	fmt.Println(sliceMap) // map[]
+	fmt.Println("after init")
+	key := "中国"
+	value, ok := sliceMap[key]
+	if !ok {
+		value = make([]string, 0, 2)
+	}
+	value = append(value, "北京", "上海")
+	sliceMap[key] = value
+	fmt.Println(sliceMap) // map[中国:[北京 上海]]
 }

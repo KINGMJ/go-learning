@@ -1,3 +1,3 @@
-module go-learning/demo1
+module go-learning
 
 go 1.17
