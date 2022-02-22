@@ -18,10 +18,11 @@ func goroutineDemo() {
 	// main goroutine done
 	// Hello Goroutinex!
 }
-
 func hello() {
 	fmt.Println("Hello Goroutine!")
 }
+
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
 
 var wg sync.WaitGroup
 

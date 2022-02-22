@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	channelDemo6()
+	channelDemo7()
 }
 
 // 无缓冲通道，必须要有接收才能发送
@@ -131,4 +131,19 @@ func channelDemo6() {
 	go squarer(ch2, ch1)
 	// 接收 ch2 的值
 	printer(ch2)
+}
+
+func foo(ch chan int) {
+	ch <- 1
+	ch <- 2
+	close(ch)
+}
+
+func channelDemo7() {
+	ch := make(chan int)
+	go foo(ch)
+	for n := range ch {
+		fmt.Println(n)
+	}
+	fmt.Println("channel now is closed")
 }
