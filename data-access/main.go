@@ -30,6 +30,10 @@ func init() {
 }
 
 func main() {
+	deleteDemo()
+}
+
+func selectDemo() {
 	albums, err := albumsByArtist("John Coltrane")
 	if err != nil {
 		log.Fatal(err)
@@ -44,6 +48,34 @@ func main() {
 	fmt.Println(album)
 
 	getAllAlbums()
+}
+
+func insertDemo() {
+	albID, err := addAlbum(Album{
+		Title:  "The Modern Sound of Betty Carter",
+		Artist: "Betty Carter",
+		Price:  49.99,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("ID of added album: %v\n", albID)
+}
+
+func updateDemo() {
+	row, err := updateAlbum(3, "Jeruex")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(row)
+}
+
+func deleteDemo() {
+	row, err := deleteAlbum(3)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(row)
 }
 
 // select 操作，获取多行
@@ -65,6 +97,7 @@ func albumsById(id int64) (Album, error) {
 	return album, nil
 }
 
+// query 操作
 func getAllAlbums() {
 	var album Album
 	rows, err := Db.Queryx("SELECT * FROM album")
@@ -78,4 +111,43 @@ func getAllAlbums() {
 		}
 		fmt.Printf("%#v\n", album)
 	}
+}
+
+// insert
+func addAlbum(alb Album) (int64, error) {
+	result, err := Db.Exec("INSERT INTO album (title, artist, price) VALUES(?, ?, ?)", alb.Title, alb.Artist, alb.Price)
+	if err != nil {
+		return 0, fmt.Errorf("addAlbum: %v", err)
+	}
+	id, err := result.LastInsertId()
+	if err != nil {
+		return 0, fmt.Errorf("addAlbum: %v", err)
+	}
+	return id, nil
+}
+
+// 更新操作
+func updateAlbum(id int64, title string) (int64, error) {
+	result, err := Db.Exec("UPDATE album set title= ? WHERE id= ?", title, id)
+	if err != nil {
+		return 0, fmt.Errorf("updateAlbum: %v", err)
+	}
+	row, err := result.RowsAffected()
+	if err != nil {
+		return 0, fmt.Errorf("updateAlbum: %v", err)
+	}
+	return row, nil
+}
+
+// 删除操作
+func deleteAlbum(id int64) (int64, error) {
+	result, err := Db.Exec("DELETE FROM album WHERE id= ?", id)
+	if err != nil {
+		return 0, fmt.Errorf("deleteAlbum: %v", err)
+	}
+	row, err := result.RowsAffected()
+	if err != nil {
+		return 0, fmt.Errorf("deleteAlbum: %v", err)
+	}
+	return row, nil
 }
