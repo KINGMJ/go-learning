@@ -18,3 +18,4 @@
 - demo16: defer
 - demo17: 并发编程（Concurrency）
 - demo18: 并发编程（Channel）
+- demo19: init函数
