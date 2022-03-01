@@ -18,4 +18,6 @@
 - demo16: defer
 - demo17: 并发编程（Concurrency）
 - demo18: 并发编程（Channel）
-- demo19: init函数
+- demo19: init 函数
+- demo20: panic 和 recover
+- demo21: select 操作

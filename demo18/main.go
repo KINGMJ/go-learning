@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	channelDemo7()
+	channelDemo1()
 }
 
 // 无缓冲通道，必须要有接收才能发送
