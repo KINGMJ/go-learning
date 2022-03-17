@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	postDemo()
+	getDemo()
 }
 
 // 写文件
