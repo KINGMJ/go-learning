@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	selectDemo2()
+	selectDemo5()
 }
 
 // select 实现多路复用
@@ -58,4 +58,68 @@ func selectDemo2() {
 	case s2 := <-string_chan:
 		fmt.Println("string: ", s2)
 	}
+}
+
+// timeout
+func selectDemo3() {
+	chResult := make(chan int, 1)
+	go func() {
+		time.Sleep(1 * time.Second)
+		chResult <- 5
+		fmt.Println("Worker finished")
+	}()
+
+	select {
+	case res := <-chResult:
+		fmt.Println("Got from worker\n", res)
+	case <-time.After(100 * time.Millisecond):
+		fmt.Printf("Timed out before worker finished\n")
+		// Timed out before worker finished
+	}
+}
+
+// 使用 default 进行非阻塞等待
+func selectDemo4() {
+	ch := make(chan int, 1)
+
+end:
+	for {
+		select {
+		case n := <-ch:
+			fmt.Printf("received %d from a channel\n", n)
+			break end
+		default:
+			fmt.Println("Channel is empty")
+			ch <- 8
+		}
+	}
+	//Channel is empty
+	//received 8 from a channel
+}
+
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
+
+// 信号通道，通过 chan struct{} 发送无意义的值
+func worker(ch chan int, chQuit chan struct{}) {
+	for {
+		select {
+		case v := <-ch:
+			fmt.Printf("Got value %d\n", v)
+		case <-chQuit:
+			fmt.Printf("Signalled on quit channel. Finishing\n")
+			chQuit <- struct{}{}
+			return
+		}
+	}
+}
+func selectDemo5() {
+	ch, chQuit := make(chan int), make(chan struct{})
+	go worker(ch, chQuit)
+	ch <- 3
+	chQuit <- struct{}{}
+	// wait to be signalled back by the worker
+	<-chQuit
+
+	//Got value 3
+	//Signalled on quit channel. Finishing
 }
