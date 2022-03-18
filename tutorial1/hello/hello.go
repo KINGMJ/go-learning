@@ -7,8 +7,8 @@ import (
 	"log"
 	// go mod tidy 安装一个外部包
 	"rsc.io/quote"
-	// 自己写的包，本地使用 go mod edit -replace go-learning/greetings=../greetings
-	"go-learning/greetings"
+	// 自己写的包，本地使用 go mod edit -replace go-learning/tutorial1/greetings=../greetings
+	"go-learning/tutorial1/greetings"
 )
 
 // mian 方法是默认执行的方法，使用 go run . 运行
