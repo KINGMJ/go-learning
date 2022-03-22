@@ -15,3 +15,11 @@ go 官方的 Developing a RESTful API with Go and Gin 例子
 
 https://app.yinxiang.com/shard/s54/nl/11117579/d812ea64-fdce-4cc7-998b-d7c4a768b8f2/
 https://go.dev/doc/tutorial/web-service-gin
+
+## tutorial3
+
+go gin 框架示例
+
+## tutorial3
+
+go 泛型示例
