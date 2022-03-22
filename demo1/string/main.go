@@ -4,10 +4,25 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"unicode/utf8"
 )
 
 func main() {
-	string2Integer()
+	stringLength()
+}
+
+/*
+	字符串的长度
+*/
+func stringLength() {
+	// len 获取的是字节长度
+	fmt.Println(len("你好"))  // 6
+	fmt.Println(len("abc")) // 3
+
+	// 字符的长度和编码有关，使用编码库来获取
+	fmt.Println(utf8.RuneCountInString("你好"))    // 2
+	fmt.Println(utf8.RuneCountInString("你好abc")) //5
+
 }
 
 /*
