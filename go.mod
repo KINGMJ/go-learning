@@ -1,4 +1,4 @@
-module go-learning/kata
+module go-learning
 
 go 1.18
 
