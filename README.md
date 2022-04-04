@@ -10,3 +10,4 @@ https://www.codewars.com/kata/541c8630095125aba6000c00
 
 1. remove_duplicates（删除有序数组中的重复项）
 2. sell_stock（买卖股票的最佳时期）
+3. sell_stock2（买卖股票的最佳时期 2）

@@ -6,7 +6,7 @@ import (
 	"go-learning/sell_stock"
 )
 
-var MaxProfit = sell_stock.MaxProfit1
+var MaxProfit = sell_stock.MaxProfit
 
 var _ = Describe("SellStock", func() {
 	It("test1", func() {
