@@ -21,3 +21,4 @@
 - demo19: init 函数
 - demo20: panic 和 recover
 - demo21: select 操作
+- demo22: 泛型编程（Generics）
