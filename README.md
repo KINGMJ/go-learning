@@ -16,8 +16,8 @@
 - demo14: 接口
 - demo15: Error handling
 - demo16: defer
-- demo17: 并发编程（Concurrency）
-- demo18: 并发编程（Channel）
+- demo17: 并发编程（Concurrency）/ Goroutines
+- demo18: 并发编程（Channel）/ Timer / Ticker
 - demo19: init 函数
 - demo20: panic 和 recover
 - demo21: select 操作
