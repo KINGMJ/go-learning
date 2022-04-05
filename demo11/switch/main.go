@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	breakDemo()
+
 }
 
-func switchDemo() {
+func switchStatement() {
 	a := 1
 	switch a {
 	// case 支持多个值
@@ -36,7 +36,7 @@ func switchDemo() {
 /*
 	switch 语句中声明变量
 */
-func switchDemo2() {
+func switchStatement2() {
 	switch n := rand.Intn(9); n {
 	case 1, 2, 3:
 		fmt.Printf("case 1, 2, 3: n is %d\n", n)
@@ -50,7 +50,10 @@ func switchDemo2() {
 	//fmt.Println(n)
 }
 
-func switchDemo3() {
+/*
+	使用 switch 做类型断言
+*/
+func switchStatement3() {
 	var printType = func(iv interface{}) {
 		switch v := iv.(type) {
 		case int:
@@ -70,41 +73,4 @@ func switchDemo3() {
 	//'5' is of type string
 	//'4' is of type int
 	//We don't support type 'bool'
-}
-
-func gotoDemo() {
-	var printIsOdd = func(n int) {
-		if n%2 == 1 {
-			goto isOdd
-		}
-		fmt.Printf("%d is even\n", n)
-		// 需要结束掉，不然会执行 label 的语句
-		return
-
-		// label 语法
-	isOdd:
-		fmt.Printf("%d is odd\n", n)
-	}
-
-	printIsOdd(5)  // 5 is odd
-	printIsOdd(10) // 10 is even
-}
-
-func breakDemo() {
-	j := 100
-
-loop:
-	for j < 110 {
-		j++
-
-		fmt.Println(j)
-		switch j % 3 {
-		case 0:
-			continue loop
-		case 1:
-			break loop
-		}
-
-		fmt.Println("Var : ", j)
-	}
 }

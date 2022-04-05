@@ -3,19 +3,21 @@ package main
 import (
 	"fmt"
 	"reflect"
-	// "io"
 	"strconv"
 )
 
 func main() {
-	blankIdentifierDemo()
+	declarVariable()
 }
 
 /*
-  变量声明
+	变量声明
 */
-func declarVariableDemo() {
+func declarVariable() {
+	// 单行声明
 	var topLevel int64 = 5
+
+	// 多行声明
 	var (
 		intVal int
 		str    string = "str"
@@ -36,7 +38,7 @@ func declarVariableDemo() {
 /*
   多变量赋值
 */
-func declarVariableDemo2() {
+func declarVariable2() {
 	// 类型推断
 	var a = 123
 	fmt.Println(reflect.TypeOf(a))
@@ -59,7 +61,7 @@ func declarVariableDemo2() {
 /*
   根据函数的返回值为变量赋值
 */
-func declarVariableDemo3() {
+func declarVariable3() {
 	var multiReturn = func() (int, int) {
 		return 1, 2
 	}

@@ -3,99 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	nilSliceDemo()
-}
-
-func sliceDemo() {
-	// 声明一个 slice
-	slice := make([]int, 0, 5)
-	// 追加元素
-	slice = append(slice, 5)
-	// 追加多个元素
-	slice = append(slice, 6, 7)
-	fmt.Println(slice) // [5 6 7]
-	// 切片的长度，就是当前元素的个数
-	fmt.Println(len(slice)) // 3
-	// 切片的容量，表示一个切片拥有的总元素数。这就是底层数组的大小
-	fmt.Println(cap(slice)) //5
-}
-
-/*
-	创建一个 slice
-*/
-func sliceDemo2() {
-	var a []int
-	fmt.Printf("a is %#v\n", a) // a is []int(nil)
-	a = append(a, 3)
-	fmt.Printf("a is %#v\n", a) // a is []int(3)
-
-	// 初始化一个 slice，是 nil slice
-	var nilSlice []bool
-	fmt.Printf("nilSlice is %#v\n", nilSlice) // nilSlice is []bool(nil)
-
-	// 使用字面量创建一个空 slice
-	empty1 := []bool{}
-	fmt.Printf("empty1 is %#v\n", empty1) // empty1 is []bool{}
-	empty1 = append(empty1, false)
-	// slice 的 cap 是动态的，如果一个元素都没有时 0；插入了一个元素后是 8；超过 8 个元素，就变成 16
-	fmt.Println(cap(empty1))
-
-	// 使用 make 语法创建一个空 slice
-	empty2 := make([]bool, 0)
-	fmt.Printf("empty2 is %#v\n", empty2) // empty2 is []bool{}
-	empty2 = append(empty2, true)
-	fmt.Println(len(empty2)) // 1
-	fmt.Println(cap(empty2)) // 8
-}
-
-func nilSliceDemo() {
-	s := []int(nil)
-	if len(s) == 0 {
-		fmt.Printf("s  is empty: %#v\n", s)
-	}
-
-	var s2 []int
-	if len(s2) == 0 {
-		fmt.Printf("s2 is empty: %#v\n", s2)
-	}
-
-	s3 := make([]int, 0)
-	if len(s2) == 0 {
-		fmt.Printf("s3 is empty: %#v\n", s3)
-	}
-}
-
-/*
-	创建静态预分配切片
-*/
-func sliceDemo3() {
-	a := []int{1, 2, 3, 4}
-	//b := make([]string, 4)
-
-	fmt.Println(len(a)) // 4
-	fmt.Println(cap(a)) // 4
-
-	a = append(a, 1)
-	fmt.Println(len(a)) // 5
-	fmt.Println(cap(a)) // 8
-}
-
-/*
-	分配预期大小
-*/
-func sliceDemo4() {
-	a := make([]int, 0, 12)
-	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a)) // a has lenght 0 and capacity 12
-	for i := 0; i < 16; i++ {
-		a = append(a, i)
-	}
-	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a)) // a has lenght 16 and capacity 24
+	filterSlice()
 }
 
 /*
 	切片过滤
 */
-func filterSliceDemo() {
+func filterSlice() {
 	var filterEven = func(a []int) []int {
 		var res []int
 		for _, el := range a {
@@ -157,7 +71,7 @@ func sliceOperation3() {
 /*
 	append a slice to slice
 */
-func appendSliceDemo() {
+func appendSlice() {
 	a := []string{"!"}
 	a2 := []string{"Hello", "World"}
 	a = append(a, a2...)
@@ -167,13 +81,12 @@ func appendSliceDemo() {
 	a2[1] = "Jack"
 	fmt.Println(a)  // [! Hello World]
 	fmt.Println(a2) // [Hello Jack]
-
 }
 
 /*
 	copy 操作
 */
-func copySliceDemo() {
+func copySlice() {
 	// 原 slice
 	slice := []int{1, 2, 3, 4, 5}
 	// 通过切片表达式生成的 slice1，所以 slice1 与 slice 内部共享一个数组
