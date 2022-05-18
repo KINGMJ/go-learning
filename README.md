@@ -20,4 +20,5 @@
 - demo18: 并发编程（Channel）/ Timer / Ticker / Worker Pool / Select 与超时检测
 - demo19: init 函数
 - demo20: panic 和 recover
+- demo21: 并发安全和锁
 - demo22: 泛型编程（Generics）
