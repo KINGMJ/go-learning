@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
+	"unsafe"
 )
 
 func main() {
-	intToString()
+	demo3()
 }
 
 /*
@@ -40,6 +41,18 @@ func intToString() {
 	// Convert int to string with fmt.Sprintf
 	i4 := fmt.Sprintf("%d", i3)
 	fmt.Println(i4)
+}
+
+/*
+	int 类型之间的区别
+*/
+func demo3() {
+	var i1 int = 1
+	var i2 int8 = 127
+	var i3 int16 = 32767
+	fmt.Printf("size: %d, type: %s\n", unsafe.Sizeof(i1), reflect.TypeOf(i1))
+	fmt.Printf("size: %d, type: %s\n", unsafe.Sizeof(i2), reflect.TypeOf(i2))
+	fmt.Printf("size: %d, type: %s\n", unsafe.Sizeof(i3), reflect.TypeOf(i3))
 }
 
 /*
