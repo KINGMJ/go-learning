@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	demo3()
+	demo4()
 }
 
 // 从标准输入中读取数据，检查重复行
@@ -99,6 +99,37 @@ func demo3() {
 	for line, n := range counts {
 		if n > 1 {
 			fmt.Printf("%d\t%s\n", n, line)
+		}
+	}
+}
+
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
+
+// 练习 1.4： 修改dup2，出现重复的行时打印文件名称。
+func demo4() {
+	files := os.Args[1:]
+	for _, arg := range files {
+		counts := make(map[string]int)
+		f, err := os.Open(arg)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
+			continue
+		}
+		countLines2(f, counts)
+		f.Close()
+	}
+}
+
+func countLines2(f *os.File, counts map[string]int) {
+	input := bufio.NewScanner(f)
+	for input.Scan() {
+		if input.Text() == "end" {
+			break
+		}
+		counts[input.Text()]++
+		// 是否出现重复的行
+		if counts[input.Text()] > 1 {
+			fmt.Printf("%s文件出现重复行: %s\n", f.Name(), input.Text())
 		}
 	}
 }
