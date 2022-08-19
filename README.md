@@ -23,3 +23,9 @@ go gin 框架示例
 ## tutorial4
 
 ginkgo 测试套件
+
+## tutorial5
+
+go 语言圣经
+
+https://books.studygolang.com/gopl-zh/ch1/ch1-04.html
