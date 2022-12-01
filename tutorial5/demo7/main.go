@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	readFileDeep("./百度脑图")
+	readFileDeep("./markdown")
 }
 
 // 读取整个目录，进行替换
