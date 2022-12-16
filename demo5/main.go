@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	formatTextDemo()
+	scanTextDemo3()
 }
 
 /*
-	index 方法
+index 方法
 */
 func indexDemo() {
 	s := "where hello is ?"
@@ -25,7 +26,7 @@ func indexDemo() {
 }
 
 /*
-	last index 方法
+last index 方法
 */
 func lastIndexDemo() {
 	s := "hello and second hello"
@@ -35,7 +36,7 @@ func lastIndexDemo() {
 }
 
 /*
-	找到所有的 index
+找到所有的 index
 */
 func findAllIndexDemo() {
 	s := "first is, second is, third is"
@@ -69,7 +70,7 @@ func compareDemo() {
 }
 
 /*
-	大小写转换
+大小写转换
 */
 func lowerUpperDemo() {
 	//s := "mixed Case"
@@ -155,4 +156,41 @@ func formatTextDemo() {
 	// {Kim 22} {Name:Kim Age:22} struct { Name string; Age int }{Name:"Kim", Age:22}
 
 	fmt.Printf("%T\n", person) // struct { Name string; Age int }
+}
+
+// Scan 扫描从标准输入读取的文本，将连续的空格分隔值存储到连续的参数中。
+// 换行算作空格。它返回成功扫描的项目数。如果它小于参数的数量，err 将报告原因。
+func scanTextDemo() {
+	s := "48 123.45s"
+	var f float64
+	var i int
+	nParsed, err := fmt.Sscanf(s, "%d %f", &i, &f)
+	if err != nil {
+		log.Fatalf("first fmt.Sscanf failed with %s\n", err)
+	}
+	fmt.Printf("i: %d, f: %f, extracted %d values\n", i, f, nParsed)
+}
+
+func scanTextDemo2() {
+	s := "48 123.45 56 s"
+	var a, b int
+	var c float64
+	count, err := fmt.Sscan(s, &a, &c, &b)
+	if err != nil {
+		log.Fatalf("first fmt.Sscanf failed with %s\n", err)
+	}
+	fmt.Println("数量", count)
+	fmt.Printf("解析后的数据: %d, %d, %f", a, b, c)
+}
+
+func scanTextDemo3() {
+	s := "48 123.45 56 s"
+	var a, b int
+	var c float64
+	count, err := fmt.Sscanln(s, &a, &c, &b)
+	if err != nil {
+		log.Fatalf("first fmt.Sscanf failed with %s\n", err)
+	}
+	fmt.Println("数量", count)
+	fmt.Printf("解析后的数据: %d, %d, %f", a, b, c)
 }
