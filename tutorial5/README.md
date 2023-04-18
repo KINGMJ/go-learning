@@ -7,3 +7,5 @@ https://books.studygolang.com/gopl-zh/ch1/ch1-04.html
 - demo8: 赋值操作
 - demo9: 类型转换
 - demo10: slice
+- demo11: json
+- demo12: defer
