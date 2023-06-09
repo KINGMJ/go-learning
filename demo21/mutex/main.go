@@ -18,10 +18,10 @@ func main() {
 }
 
 func add() {
+	defer wg.Done()
 	for i := 0; i < 5000; i++ {
 		lock.Lock()
 		x = x + 1
 		lock.Unlock()
 	}
-	wg.Done()
 }

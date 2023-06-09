@@ -17,10 +17,10 @@ func main() {
 }
 
 func add() {
+	defer wg.Done()
 	for i := 0; i < 5000; i++ {
 		x = x + 1
 	}
-	wg.Done()
 }
 
 /*
