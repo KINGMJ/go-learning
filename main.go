@@ -4,12 +4,16 @@ import (
 	"fmt"
 )
 
+const (
+	Secure = 1 >> iota
+	Authors
+	Reader
+	Third
+)
+
 func main() {
-	v := 5
-	pv := &v
-	// 指针取值，根据指针去内存取值
-	c := *pv
-	c = 10
-	fmt.Printf("%v\n", c) // 5
-	fmt.Printf("%v\n", v) // 5
+	fmt.Println(Secure)
+	fmt.Println(Authors)
+	fmt.Println(Reader)
+	fmt.Println(Third)
 }

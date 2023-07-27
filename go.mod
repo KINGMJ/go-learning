@@ -2,4 +2,4 @@ module go-learning
 
 go 1.18
 
-require golang.org/x/exp v0.0.0-20220916125017-b168a2c6b86b
+require github.com/petermattis/goid v0.0.0-20230518223814-80aa455d8761

@@ -14,6 +14,7 @@ func main() {
 	go add()
 	go add()
 	wg.Wait()
+
 	fmt.Println(x) // 10000
 }
 
