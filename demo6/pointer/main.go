@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	pointerDemo6()
+	pointerDemo()
 }
 
 /*
-	指针类型和指针地址
+指针类型和指针地址
 */
 func pointerDemo() {
 	v := 5
@@ -19,7 +19,7 @@ func pointerDemo() {
 }
 
 /*
-	指针取值
+指针取值
 */
 func pointerDemo2() {
 	v := 5
@@ -31,7 +31,7 @@ func pointerDemo2() {
 }
 
 /*
-	通过指针改变原有的值
+通过指针改变原有的值
 */
 func pointerDemo3() {
 	v := 5
@@ -43,7 +43,7 @@ func pointerDemo3() {
 }
 
 /*
-	指针传值
+指针传值
 */
 func pointerDemo4() {
 	var modify1 = func(x int) {
@@ -63,7 +63,7 @@ func pointerDemo4() {
 }
 
 /*
-	空指针
+空指针：指针的零值为 nil
 */
 func pointerDemo5() {
 	var p *string
