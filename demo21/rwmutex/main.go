@@ -14,7 +14,7 @@ var (
 )
 
 func main() {
-	demo2()
+	demo3()
 }
 
 func demo1() {
@@ -86,4 +86,40 @@ func demo2() {
 		counter.Incr() // 计数器写操作
 		time.Sleep(5 * time.Second)
 	}
+}
+
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
+
+// 环形依赖，形成死锁
+func demo3() {
+	var mu sync.RWMutex
+
+	go func() {
+		time.Sleep(200 * time.Millisecond)
+		mu.Lock()
+		fmt.Println("Lock")
+		time.Sleep(100 * time.Millisecond)
+		mu.Unlock()
+		fmt.Println("Unlock")
+	}()
+
+	go func() {
+		factorial(&mu, 10) // 计算10的阶乘
+	}()
+	select {}
+}
+
+func factorial(m *sync.RWMutex, n int) int {
+	if n < 1 {
+		return 0
+	}
+	fmt.Println("RLock")
+	m.RLock()
+
+	defer func() {
+		fmt.Println("RUnlock")
+		m.RUnlock()
+	}()
+	time.Sleep(100 * time.Millisecond)
+	return factorial(m, n-1) * n
 }
