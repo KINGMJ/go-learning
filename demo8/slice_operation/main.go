@@ -7,7 +7,7 @@ func main() {
 }
 
 /*
-	切片过滤
+切片过滤
 */
 func filterSlice() {
 	var filterEven = func(a []int) []int {
@@ -26,7 +26,7 @@ func filterSlice() {
 }
 
 /*
-  slice 基本表达式
+slice 基本表达式
 */
 func sliceOperation() {
 	a := [5]int{1, 2, 3, 4, 5}
@@ -38,7 +38,7 @@ func sliceOperation() {
 }
 
 /*
-	slice 完整表达式
+slice 完整表达式
 */
 func sliceOperation2() {
 	a := [5]int{1, 2, 3, 4, 5}
@@ -50,7 +50,7 @@ func sliceOperation2() {
 }
 
 /*
-	切片表达式会影响切片的底层数组
+切片表达式会影响切片的底层数组
 */
 func sliceOperation3() {
 	// a、s1、s2 底层都是共用同一个数组
@@ -69,7 +69,7 @@ func sliceOperation3() {
 }
 
 /*
-	append a slice to slice
+append a slice to slice
 */
 func appendSlice() {
 	a := []string{"!"}
@@ -84,7 +84,7 @@ func appendSlice() {
 }
 
 /*
-	copy 操作
+copy 操作
 */
 func copySlice() {
 	// 原 slice
@@ -111,7 +111,7 @@ func copySlice() {
 }
 
 /*
-	使用 append 到一个空 slice 中替代 copy
+使用 append 到一个空 slice 中替代 copy
 */
 func copySliceDemo2() {
 	src := []int{1, 2, 3}
@@ -124,7 +124,7 @@ func copySliceDemo2() {
 }
 
 /*
-	删除开头的位置
+删除开头的位置
 */
 func removeSliceDemo() {
 	s := []int{10, 11, 12, 13}
@@ -140,18 +140,15 @@ func removeSliceDemo() {
 	// 取[0,2)
 	s = s[:len]
 	fmt.Println(s) // [12 13]
-
 }
 
 /*
-	删除中间的位置
+删除中间的位置
 */
 func removeSliceDemo2() {
 	s := []int{10, 11, 12, 13}
-
 	i := 1
 	n := 2
-
 	// s = append(s[:i], s[i+n:]...)
 	len := copy(s[i:], s[i+n:]) // 1，s：[10 13 12 13]
 	s = s[:i+len]
@@ -159,7 +156,7 @@ func removeSliceDemo2() {
 }
 
 /*
-	使用优化地方式移除元素
+使用优化地方式移除元素
 */
 func removeSliceDemo3() {
 	s := []int{10, 11, 12, 13}

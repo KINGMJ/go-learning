@@ -9,9 +9,9 @@ func main() {
 }
 
 /*
-	slice 声明
+slice 声明
 */
-func declarSlice() {
+func declareSlice() {
 	// 声明一个 slice
 	slice := make([]int, 0, 5)
 	// 追加元素
@@ -26,7 +26,7 @@ func declarSlice() {
 }
 
 /*
-	nil slice
+nil slice
 */
 func nilSlice() {
 	s := []int(nil)
@@ -47,9 +47,9 @@ func nilSlice() {
 }
 
 /*
-	创建一个 slice
+创建一个 slice
 */
-func declarSlice2() {
+func declareSlice2() {
 	var a []int
 	fmt.Printf("a is %#v\n", a) // a is []int(nil)
 	a = append(a, 3)
@@ -75,9 +75,9 @@ func declarSlice2() {
 }
 
 /*
-	创建静态预分配切片
+创建静态预分配切片
 */
-func declarSlice3() {
+func declareSlice3() {
 	a := []int{1, 2, 3, 4}
 	//b := make([]string, 4)
 
@@ -90,20 +90,20 @@ func declarSlice3() {
 }
 
 /*
-	分配预期大小
+分配预期大小
 */
-func declarSlice4() {
+func declareSlice4() {
 	// make 第二个参数是切片的长度，第三个参数是容量
 	a := make([]int, 0, 12)
-	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a)) // a has lenght 0 and capacity 12
+	fmt.Printf("a has length %d and capacity %d\n", len(a), cap(a)) // a has length 0 and capacity 12
 	for i := 0; i < 16; i++ {
 		a = append(a, i)
 	}
-	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a)) // a has lenght 16 and capacity 24
+	fmt.Printf("a has length %d and capacity %d\n", len(a), cap(a)) // a has length 16 and capacity 24
 }
 
 /*
-	slice 初始化
+slice 初始化
 */
 func initSlice() {
 	// 没有分配空间，直接赋值会报错
@@ -117,7 +117,7 @@ func initSlice() {
 }
 
 /*
-	二维切片
+二维切片
 */
 func twoDSlice() {
 	twoD := make([][]int, 3)
