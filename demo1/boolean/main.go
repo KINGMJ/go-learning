@@ -6,7 +6,7 @@ import (
 )
 
 /*
-	布尔类型
+布尔类型
 */
 func main() {
 	// bool 类型，true or false
