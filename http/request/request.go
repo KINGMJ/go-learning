@@ -18,7 +18,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	err := r.ParseForm()
 	if err != nil {
-		fmt.Fprintf(w, "parse from erro %v\n", r.Form)
+		fmt.Fprintf(w, "parse from error %v\n", r.Form)
 	}
 	fmt.Fprintf(w, "before parse from %v\n", r.Form) // before parse from map[name:[jack]]
 }
