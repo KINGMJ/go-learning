@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	demo1()
+	demo4()
 }
 
 // 使用 gorilla/mux 来管理路由
@@ -18,6 +19,7 @@ func demo1() {
 	r := mux.NewRouter()
 	// 替代 http 的 HandleFunc 方法
 	r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
+		// 从动态参数中获取数据
 		vars := mux.Vars(r)
 		title := vars["title"]
 		page := vars["page"]
@@ -26,7 +28,7 @@ func demo1() {
 
 	// 可以通过正则进行限制，如果不是下面这种格式都是404
 	// 访问：http://localhost:8080/articles/demo/1
-	// Caregory: demo
+	// Category: demo
 	// Id: 1
 	r.HandleFunc("/articles/{category}/{id:[0-9+]}", ArticleHandler)
 	http.ListenAndServe(":8080", r)
@@ -59,4 +61,30 @@ func CreateBook(w http.ResponseWriter, r *http.Request) {
 func ListBook(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	fmt.Fprintln(w, vars["title"])
+}
+
+func demo3() {
+	r := mux.NewRouter()
+	// 子路由限定
+	bookRouter := r.PathPrefix("/books").Subrouter()
+	bookRouter.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Your're requested all book")
+	})
+	bookRouter.HandleFunc("/{title}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		title := vars["title"]
+		fmt.Fprintf(w, "Your're requested the book: %s\n", title)
+	})
+	http.ListenAndServe(":8080", r)
+}
+
+func demo4() {
+	r := mux.NewRouter()
+	r.HandleFunc("/books/{title}", func(w http.ResponseWriter, r *http.Request) {
+		params := r.URL.Query()
+		fmt.Fprintln(w, params)
+		query := params.Get("name")
+		fmt.Fprintf(w, "Search Query: %s", query)
+	})
+	http.ListenAndServe(":8080", r)
 }
