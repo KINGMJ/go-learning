@@ -1,0 +1,26 @@
+syntax = "proto3"; // 指定版本信息，不指定会报错，默认是 proto2
+
+option go_package = "./pb;pb";  // 指定包名，分号前面的表示生成的文件路径；分号后面表示生成的go文件的包名
+
+// 定义结构体
+message UserRequest {
+    string name = 1;
+}
+
+// 响应结构体
+message UserResponse {
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+    // repeated修饰符是可变数组，golang中会生成string类型的切片
+    repeated string hobby = 4;
+}
+
+// service 定义方法
+service UserInfoService {
+    rpc GetUserInfo (UserRequest) returns (UserResponse);
+}
+
+
+
+
