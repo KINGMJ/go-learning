@@ -1,19 +1,34 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-const (
-	Secure = 1 >> iota
-	Authors
-	Reader
-	Third
-)
+type Object struct {
+	data       int
+	references int
+}
+
+func NewObject(data int) *Object {
+	return &Object{data: data, references: 1}
+}
+
+func (o *Object) AddReference() {
+	o.references++
+}
+
+func (o *Object) ReleaseReference() {
+	o.references--
+	if o.references == 0 {
+		fmt.Println("Object released:", o.data)
+	}
+}
+
+func processObject(obj *Object) {
+	fmt.Println("Processing object with data:", obj.data)
+}
 
 func main() {
-	fmt.Println(Secure)
-	fmt.Println(Authors)
-	fmt.Println(Reader)
-	fmt.Println(Third)
+	obj := NewObject(43)
+	// obj.AddReference()
+	processObject(obj)
+	obj.ReleaseReference()
 }

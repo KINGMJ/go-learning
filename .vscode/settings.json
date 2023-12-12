@@ -1,8 +1,12 @@
 {
     "cSpell.words": [
+        "Cond",
         "goid",
+        "Goroutines",
         "millisecs",
         "petermattis",
-        "rwlock"
+        "rwlock",
+        "struct",
+        "Structs"
     ]
 }

@@ -3,7 +3,7 @@
 - demo1: 数据类型：boolean/integer/float
 - demo2: 数据类型： characters 和 runes
 - demo3: 变量声明/求值
-- demo4: 常量声明/itoa
+- demo4: 常量声明/iota
 - demo5: String 类型操作
 - demo6: Pointers（指针）
 - demo7: Array
@@ -29,3 +29,5 @@
 - demo27: runtime 包
 - demo28: atomic 包
 - demo29: sort 包
+- demo30: 逃逸分析
+- demo31: context 包
