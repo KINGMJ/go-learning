@@ -17,7 +17,7 @@
 - demo15: Error handling
 - demo16: defer
 - demo17: 并发编程（Concurrency）/ Goroutines
-- demo18: 并发编程（Channel）/ Timer / Ticker / WaitGroup / Worker Pool / Select 与超时检测 / Cond / Once
+- demo18: 并发编程（Channel）/ Timer / Ticker / WaitGroup / Worker Pool / Select 与超时检测 / Cond / Once / Pool
 - demo19: init 函数
 - demo20: panic 和 recover
 - demo21: 并发安全和锁

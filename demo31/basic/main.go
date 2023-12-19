@@ -7,7 +7,19 @@ import (
 )
 
 func main() {
-	demo4()
+	demo1()
+}
+
+func demo1() {
+	// 创建一个带有取消功能的 context 和对应的 cancel 函数
+	ctx, cancel := context.WithCancel(context.Background())
+	// 启动一个长时间运行的操作
+	go longRunningOperation(ctx)
+	time.Sleep(2 * time.Second)
+	// 模拟运行一段时间后取消操作
+	cancel()
+	// 等待一段时间，以观察操作是否已经取消
+	time.Sleep(1 * time.Second)
 }
 
 func longRunningOperation(ctx context.Context) {
@@ -22,16 +34,12 @@ func longRunningOperation(ctx context.Context) {
 	}
 }
 
-func demo1() {
-	// 创建一个带有取消功能的 context 和对应的 cancel 函数
-	ctx, cancel := context.WithCancel(context.Background())
-	// 启动一个长时间运行的操作
-	go longRunningOperation(ctx)
-	time.Sleep(2 * time.Second)
-	// 模拟运行一段时间后取消操作
-	cancel()
-	// 等待一段时间，以观察操作是否已经取消
-	time.Sleep(1 * time.Second)
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
+func demo2() {
+	deadline := time.Now().Add(2 * time.Second)
+	ctx, cancel := context.WithDeadline(context.Background(), deadline)
+	defer cancel()
+	operationWithDeadline(ctx)
 }
 
 func operationWithDeadline(ctx context.Context) {
@@ -47,11 +55,11 @@ func operationWithDeadline(ctx context.Context) {
 	}
 }
 
-func demo2() {
-	deadline := time.Now().Add(2 * time.Second)
-	ctx, cancel := context.WithDeadline(context.Background(), deadline)
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
+func demo3() {
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
-	operationWithDeadline(ctx)
+	operationWithTimeout(ctx)
 }
 
 func operationWithTimeout(ctx context.Context) {
@@ -63,12 +71,7 @@ func operationWithTimeout(ctx context.Context) {
 	}
 }
 
-func demo3() {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
-	defer cancel()
-	operationWithTimeout(ctx)
-}
-
+// ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
 func demo4() {
 	// 设置一个截止日期为相对的2秒钟
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
