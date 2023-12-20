@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "Cond",
+        "errgroup",
         "goid",
         "Goroutines",
         "millisecs",

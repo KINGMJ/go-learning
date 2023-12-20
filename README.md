@@ -31,3 +31,5 @@
 - demo29: sort 包
 - demo30: 逃逸分析
 - demo31: context 包
+- demo32: 单元测试与 benchmark
+- demo33: 扩展并发原语：errgroup
