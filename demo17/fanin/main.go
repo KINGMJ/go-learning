@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	demo2()
+	demo3()
 }
 
 func demo1() {
@@ -61,7 +61,7 @@ func fanIn(channels ...<-chan any) <-chan any {
 }
 
 // ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
-
+// 使用反射实现 fanIn
 func fanInReflect(chans ...<-chan any) <-chan any {
 	out := make(chan any)
 	go func() {
@@ -100,3 +100,60 @@ func demo2() {
 }
 
 // ----------- (●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●)(●'◡'●) ------------
+// 使用递归实现 fanIn
+func fanInRec(chans ...<-chan any) <-chan any {
+	switch len(chans) {
+	case 0:
+		c := make(chan any)
+		close(c)
+		return c
+	case 1:
+		return chans[0]
+	case 2:
+		return mergeTwo(chans[0], chans[1])
+	default:
+		m := len(chans) / 2
+		return mergeTwo(
+			fanInRec(chans[:m]...),
+			fanInRec(chans[m:]...),
+		)
+	}
+}
+
+func mergeTwo(a, b <-chan any) <-chan any {
+	c := make(chan any)
+	go func() {
+		defer close(c)
+		for a != nil || b != nil {
+			select {
+			case v, ok := <-a:
+				if !ok {
+					a = nil
+					continue
+				}
+				c <- v
+			case v, ok := <-b:
+				if !ok {
+					b = nil
+					continue
+				}
+				c <- v
+			}
+		}
+	}()
+	return c
+}
+
+func demo3() {
+	ch1 := make(chan any)
+	ch2 := make(chan any)
+	ch3 := make(chan any)
+	go producer(ch1)
+	go producer(ch2)
+	go producer(ch3)
+
+	resultCh := fanInRec(ch1, ch2, ch3)
+	for v := range resultCh {
+		fmt.Println("Received:", v)
+	}
+}
