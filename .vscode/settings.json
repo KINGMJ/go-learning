@@ -3,6 +3,7 @@
         "channs",
         "chans",
         "Cond",
+        "cyclicbarrier",
         "errgroup",
         "goid",
         "Goroutines",
