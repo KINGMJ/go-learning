@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"github.com/mitchellh/mapstructure"
-	"log"
 )
 
 // 定义数据库对象
@@ -19,7 +20,7 @@ type Album struct {
 }
 
 /*
-	初始化，连接db
+初始化，连接db
 */
 func init() {
 	// 使用 dsn 的方式连接数据库
@@ -32,7 +33,7 @@ func init() {
 }
 
 func main() {
-	queryDemo()
+	selectDemo()
 }
 
 func selectDemo() {
