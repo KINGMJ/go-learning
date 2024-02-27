@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"runtime"
 
 	"github.com/brianvoe/gofakeit/v6"
 	_ "github.com/go-sql-driver/mysql"
@@ -16,7 +17,7 @@ var Db *sqlx.DB
 
 // 使用信号量限制每次并行执行5个任务
 var (
-	maxWorker = 5
+	maxWorker = runtime.GOMAXPROCS(0)
 	sem       = semaphore.NewWeighted(int64(maxWorker))
 	weight    = 1
 )
@@ -35,9 +36,36 @@ func init() {
 }
 
 func main() {
-	insertUserData()
+	insertTestData()
 }
 
+// 插入测试表
+func insertTestData() {
+	sqlDelete := "DELETE FROM t"
+	Db.Exec(sqlDelete)
+	sqlInsert := "INSERT INTO t(a,b) VALUES(?, ?)"
+	for i := 1; i <= 100000; i++ {
+		sem.Acquire(context.Background(), int64(weight))
+		go func(i int) {
+			defer sem.Release(int64(weight))
+			result, err := Db.Exec(sqlInsert, i, i)
+			if err != nil {
+				log.Fatal(err)
+			}
+			id, err := result.LastInsertId()
+			if err != nil {
+				log.Fatal(fmt.Errorf("add t: %v", err))
+			}
+			fmt.Printf("ID of added t: %v\n", id)
+		}(i)
+	}
+	if err := sem.Acquire(context.Background(), int64(maxWorker)); err != nil {
+		log.Printf("获取所有的worker失败：%v", err)
+	}
+	fmt.Println("10w 条数据插入完毕...")
+}
+
+// 插入用户数据
 func insertUserData() {
 	// 插入 30w 条数据
 	for i := 0; i < 300000; i++ {
