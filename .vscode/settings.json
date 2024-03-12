@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "gofakeit",
+        "gorm",
         "sqlx"
     ]
 }
