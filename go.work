@@ -1,3 +1,7 @@
 go 1.21.0
 
-use ./tutorial6/demo3
+use (
+	.
+	./tutorial6/demo3
+	./tutorial5
+)
