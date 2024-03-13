@@ -8,3 +8,9 @@
 - basic：基本的操作
 - dbresolver：读写分离实践
 - sharding：水平分表实践
+
+### redis
+
+redis 操作
+
+- distributed-lock：redis 实现的分布式锁

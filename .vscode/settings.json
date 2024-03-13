@@ -2,6 +2,7 @@
     "cSpell.words": [
         "gofakeit",
         "gorm",
+        "pipeliner",
         "sqlx"
     ]
 }
